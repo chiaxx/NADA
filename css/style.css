@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: 'League Spartan', sans-serif;
+
+  }
+  
+  body {
+    background-image: url(../img/pexels-felix-mittermeier-957061.jpg);
+  }
+  h1{
+    font-family: 'Antonio', sans-serif;
+    font-size: 20px;
+    line-height: 52px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px;
+  }
+  
+  
+  .heading {
+    background-color: rgb(107, 136, 208);
+    height: 6.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: #333;
+    font-family: sans-serif;
+  }
+  
+  .wrapper {
+    text-align: center;
+    padding: 2em;
+    background-color: white;
+    opacity: .95;
+    width: 100%;
+  }
+  
+  .name {
+    text-transform: capitalize;
+    font-family: sans-serif;
+  }
+  
+  .date {
+    display: block;
+    margin-top: 1em;
+    font-family: monospace;
+    font-size: 1.125rem;
+    color: #333;
+  }
+  
+  .image {
+    display: block;
+    margin: 2em auto;
+    max-width: 500px;
+    object-fit: cover;
+    width: 100%;
+  }
+  
+  .comments {
+    line-height: 1.5;
+    letter-spacing: .1em;
+    font-family: sans-serif;
+  }
+  
+  
+  .input-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  #date-picker,
+  .btn {
+    border: 1px solid transparent;
+    outline: none;
+    height: 30px;
+    padding: 0 3em;
+    font-family: monospace;
+    font-size: 1.125rem;
+    border-radius: 3px;
+  }
+  
+  .btn:is(:hover, :focus) {
+    cursor: pointer;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+  }
+  
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: lavender;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+  }
+  
+  footer>a {
+    margin-left: .5em;
+    text-decoration: dotted;
+    color: purple;
+    font-weight: bolder;
+  }
+  
+  .video {
+    display: block;
+    margin: 1em auto;
+    border: 0;
+    max-width: 500px;
+    width: 100%;
+    height: 250px;
+  }
+  
+  
+  @media screen and (max-width: 500px) {
+    .heading {
+      height: 150px;
+    }
+  
+    .input-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .input-container * {
+      margin: .5em 0;
+    }
+  }
