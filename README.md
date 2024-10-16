@@ -1,4 +1,4 @@
-# Chia Ehirim - NASA APOD App
+# Chia - NASA APOD App
 
 ## Project Description
 
