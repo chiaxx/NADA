@@ -7,7 +7,7 @@ This app is a simple, intuitive tool to view NASA's spectacular Astronomy Pictur
 The design of the app involves the use of technologies such as HTML,CSS, Javascript and NASA API for streamlined performance. Enjoy!
 
 **Improvement**
-- Secure the api keys with .env file and use .dotenv and .gitignore
+- Secure the api keys with .env file and install dotenv node modules and .gitignore node_modules
 - As a user, it would be nice to have the ability to switch between light and dark modes, because bright screens sometimes hurt my eyes.
 - As a user I want to have easy, intuitive access to the awesome archive of images going all the way back to 1996 because it's cool to look back at older images too.
 - As a user, it would be cool to be able to search for images by subject, incase I'm interested in a very specific type of phenomenon.
