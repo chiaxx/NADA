@@ -1,4 +1,4 @@
-# Chidinma Ehirim - NASA APOD App
+# Chia Ehirim - NASA APOD App
 
 ## Project Description
 
