@@ -1,44 +1,53 @@
-// Import dotenv if necessary (for server-side node environments)
-import { config } from 'dotenv';
-config();
-
-// Access the API key from the environment variable
-const apiKey = process.env.REACT_APP_NASA_API_KEY;
+// Fetch the API key from the backend
+async function getApiKey() {
+    try {
+        const response = await fetch("https://chia-nasa-apod.netlify.app/apiKey");
+        const data = await response.json();
+        return data.apiKey;
+    } catch (error) {
+        console.error("Error fetching API key:", error);
+    }
+}
 
 // API Fetch from NASA API
-function getPhoto() {
-	const selectedDate = document.querySelector("#date-picker").value;
-	try {
-		fetch(
-			`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${selectedDate}`
-		)
-			.then((res) => res.json())
-			.then((data) => {
-				console.log(data);
-				if (data.media_type === "video") {
-					document.querySelector(".wrapper").innerHTML = videoTemplate(
-						data.date,
-						data.explanation,
-						data.title,
-						data.url
-					);
-				} else {
-					document.querySelector(".wrapper").innerHTML = htmlTemplate(
-						data.date,
-						data.explanation,
-						data.title,
-						data.url
-					);
-				}
-			});
-	} catch (error) {
-		console.log(error);
-	}
-	document.querySelector("#date-picker").value = "";
+async function getPhoto() {
+    const selectedDate = document.querySelector("#date-picker").value;
+    const apiKey = await getApiKey(); // Fetch the key
+
+    if (!apiKey) {
+        console.error("API key not found");
+        return;
+    }
+
+    try {
+        fetch(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${selectedDate}`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if (data.media_type === "video") {
+                    document.querySelector(".wrapper").innerHTML = videoTemplate(
+                        data.date,
+                        data.explanation,
+                        data.title,
+                        data.url
+                    );
+                } else {
+                    document.querySelector(".wrapper").innerHTML = htmlTemplate(
+                        data.date,
+                        data.explanation,
+                        data.title,
+                        data.url
+                    );
+                }
+            });
+    } catch (error) {
+        console.log(error);
+    }
+    document.querySelector("#date-picker").value = "";
 }
 
 function htmlTemplate(date, explanation, title, image) {
-	return `<div class="wrapper">
+    return `<div class="wrapper">
   <section class="name-container">
     <h2 class="name">${title}</h2>
     <span class='date'> ${date} </span>
@@ -51,12 +60,11 @@ function htmlTemplate(date, explanation, title, image) {
   <section class="comments-container">
     <p class="comments">${explanation}</p>
   </section>
-</div>
-`;
+</div>`;
 }
 
 function videoTemplate(date, explanation, title, video) {
-	return `<div class="wrapper">
+    return `<div class="wrapper">
   <section class="name-container">
     <h2 class="name">${title}</h2>
     <span class='date'> ${date} </span>
@@ -69,14 +77,23 @@ function videoTemplate(date, explanation, title, video) {
   <section class="comments-container">
     <p class="comments">${explanation}</p>
   </section>
-</div>
-`;
+</div>`;
 }
 
-// Event listener for the "Get Media" button
 document.querySelector(".btn").addEventListener("click", getPhoto);
 
 getPhoto();
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* 
