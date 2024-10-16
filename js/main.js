@@ -1,11 +1,16 @@
-import apiKey from "./api.js";
+// Import dotenv if necessary (for server-side node environments)
+import { config } from 'dotenv';
+config();
+
+// Access the API key from the environment variable
+const apiKey = process.env.REACT_APP_NASA_API_KEY;
 
 // API Fetch from NASA API
 function getPhoto() {
 	const selectedDate = document.querySelector("#date-picker").value;
 	try {
 		fetch(
-			` https://api.nasa.gov/planetary/apod?api_key=2mfNfhPxMoap8kgINsfExw6dGWBqbCRNyhU840lv&date=${selectedDate}`
+			`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${selectedDate}`
 		)
 			.then((res) => res.json())
 			.then((data) => {
@@ -32,7 +37,7 @@ function getPhoto() {
 	document.querySelector("#date-picker").value = "";
 }
 
-function htmlTemplate(date, explanation, title, image, video) {
+function htmlTemplate(date, explanation, title, image) {
 	return `<div class="wrapper">
   <section class="name-container">
     <h2 class="name">${title}</h2>
@@ -68,9 +73,11 @@ function videoTemplate(date, explanation, title, video) {
 `;
 }
 
+// Event listener for the "Get Media" button
 document.querySelector(".btn").addEventListener("click", getPhoto);
 
 getPhoto();
+
 
 /* 
 
